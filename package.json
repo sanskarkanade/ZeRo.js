@@ -7,7 +7,9 @@
   "exports": {
     ".": "./src/index.js"
   },
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "keywords": [
     "reactive",
     "signals",
@@ -15,5 +17,19 @@
     "frontend-framework"
   ],
   "author": "Sanskar Kanade",
-  "license": "MIT"
+  "license": "MIT",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"No tests specified yet\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanskarkanade/ZeRo.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sanskarkanade/ZeRo.js/issues"
+  },
+  "homepage": "https://github.com/sanskarkanade/ZeRo.js#readme"
 }
