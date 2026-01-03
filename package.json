@@ -1,0 +1,19 @@
+{
+  "name": "zerojs-reactive",
+  "version": "0.1.0",
+  "description": "A minimal reactive JavaScript framework inspired by React, Vue, and SolidJS",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": ["src"],
+  "keywords": [
+    "reactive",
+    "signals",
+    "state-management",
+    "frontend-framework"
+  ],
+  "author": "Sanskar Kanade",
+  "license": "MIT"
+}
