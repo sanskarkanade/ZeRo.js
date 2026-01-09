@@ -4,7 +4,7 @@ A **minimal reactive JavaScript framework** built from scratch to understand how
 
 Zero.js focuses on **fine-grained reactivity**, **dependency tracking**, and **automatic DOM updates** — without using any external libraries.
 
-> 🎯 Educational, lightweight, and framework-internals focused.
+> 🎯 Educational, lightweight, and focused on framework internals.
 
 ---
 
@@ -17,20 +17,27 @@ Zero.js focuses on **fine-grained reactivity**, **dependency tracking**, and **a
 - ⚛️ React-like `zState` API
 - 🪄 Template binding using `{{ }}` syntax
 - 🌳 Automatic DOM scanning and updates
-- 🧪 Example Todo App built using the framework
-- 📦 Published as an npm package
+- 🧪 Example **Todo App** built using the framework
 
 ---
 
 ## 📦 Installation
 
-Install from npm:
+> ⚠️ **Note:** This project is currently **not published to npm**.  
+> It is intended for **learning, experimentation, and source-level usage**.
+
+### Local Usage
+
+Clone the repository:
 
 ```bash
-npm install zerojs-reactive
+git clone https://github.com/sanskarkanade/zero.js.git
+cd zero.js
+```
 
-Import what you need:
+Import directly from the source:
 
+```js
 import {
   signal,
   effect,
@@ -38,13 +45,18 @@ import {
   computed,
   zState,
   scanDOM
-} from "zerojs-reactive";
+} from "./src/index.js";
+```
 
-🧠 Core Concepts
-1️⃣ signal
+---
+
+## 🧠 Core Concepts
+
+### 1️⃣ `signal`
 
 A reactive primitive that stores a value and tracks which effects depend on it.
 
+```js
 const count = signal(0);
 
 effect(() => {
@@ -52,48 +64,60 @@ effect(() => {
 });
 
 count.value++;
+```
 
-2️⃣ effect
+---
+
+### 2️⃣ `effect`
 
 Registers a reactive function that automatically re-runs when its dependencies change.
 
+```js
 effect(() => {
   console.log("Runs whenever dependencies change");
 });
+```
 
-How it works:
+**How it works:**
+- Runs immediately  
+- Collects dependencies  
+- Re-executes on updates  
 
-Runs immediately
+---
 
-Collects dependencies
-
-Re-executes on updates
-
-3️⃣ computed
+### 3️⃣ `computed`
 
 Creates derived reactive state based on other reactive values.
 
+```js
 const doubled = computed(() => count.value * 2);
+```
 
-4️⃣ reactive
+---
 
-Makes an object reactive using JavaScript Proxy.
+### 4️⃣ `reactive`
 
+Makes an object reactive using JavaScript `Proxy`.
+
+```js
 const state = reactive({
   name: "Zero",
   todos: []
 });
+```
 
-Tracks property access
+**Behavior:**
+- Tracks property access  
+- Triggers updates on reassignment  
+- Uses immutable updates for arrays  
 
-Triggers updates on reassignment
+---
 
-Uses immutable updates for arrays
+### 5️⃣ `zState` (React-like API)
 
-5️⃣ zState (React-like API)
+A convenience abstraction inspired by React’s `useState`.
 
-A convenience abstraction inspired by React’s useState.
-
+```js
 const [count, setCount] = zState(0);
 
 effect(() => {
@@ -101,80 +125,85 @@ effect(() => {
 });
 
 setCount(count() + 1);
+```
 
-Built on top of signal
+- Built on top of `signal`
+- Getter–setter pattern
+- Fine-grained reactivity (SolidJS-inspired)
 
-Getter–setter pattern
+---
 
-Fine-grained reactivity (SolidJS-inspired)
-
-🪄 Template Binding ({{ }})
+## 🪄 Template Binding (`{{ }}`)
 
 Zero.js supports simple text bindings:
 
+```html
 <p>Total todos: {{ todos.length }}</p>
+```
 
 Bindings are:
+- Parsed at runtime  
+- Automatically updated via effects  
+- Dependency-tracked  
 
-Parsed at runtime
+---
 
-Automatically updated via effects
-
-Dependency-tracked
-
-🌳 DOM Scanning
+## 🌳 DOM Scanning
 
 Zero.js scans the DOM and binds templates automatically:
 
+```js
 scanDOM(document.body, state);
+```
 
-This enables reactive updates without a virtual DOM.
+This enables reactive updates **without a virtual DOM**.
 
-🧪 Example: Todo App
+---
 
-A fully working Todo App is included.
+## 🧪 Example: Todo App
 
-Features
+A fully working **Todo App** is included to demonstrate real usage.
 
-➕ Add todos
+**Features**
+- ➕ Add todos  
+- ✅ Mark todos as done  
+- ❌ Delete todos  
+- 🔢 Live count updates  
 
-✅ Mark todos as done
-
-❌ Delete todos
-
-🔢 Live count update
-
-📁 Location:
+📁 **Location:**  
+```
 examples/todo-app/
+```
 
-⚠️ Design Decisions & Limitations
+---
 
-Array mutations (push, splice) are not tracked
+## ⚠️ Design Decisions & Limitations
 
-Immutable updates are used instead
+- Array mutations (`push`, `splice`) are **not tracked**
+- Immutable updates are used instead
+- Effects run immediately (no scheduler yet)
+- No virtual DOM (direct DOM manipulation)
 
-Effects run immediately (no scheduler yet)
+These choices keep the framework **simple, predictable, and educational**.
 
-No virtual DOM (direct DOM manipulation)
+---
 
-These decisions keep the framework simple, predictable, and educational.
+## 🎓 What This Project Demonstrates
 
-🎓 What This Project Demonstrates
+- Deep understanding of reactivity systems  
+- Dependency tracking mechanics  
+- State management internals  
+- Framework design trade-offs  
+- DOM lifecycle & timing awareness  
 
-Deep understanding of reactivity systems
+---
 
-Dependency tracking mechanics
-
-State management internals
-
-Framework design tradeoffs
-
-DOM lifecycle & timing awareness
-
-📜 License
+## 📜 License
 
 MIT License — free to use for learning and experimentation.
 
-👤 Author
+---
 
-Sanskar Kanade
+## 👤 Author
+
+**Sanskar Kanade**
